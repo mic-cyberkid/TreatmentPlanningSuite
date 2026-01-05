@@ -1,0 +1,1526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../styles/style.css" tabClosingPolicy="ALL_TABS" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rtpsuite.LoadPageController">
+    <tabs>
+        <Tab fx:id="Home" closable="false">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+            
+                    <!-- Top Header Bar -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 20; -fx-spacing: 10;                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="20">
+                                    <children>
+                                        <Label text="Treatment Planning Suite" textFill="#003087">
+                                            <font>
+                                                <Font name="System Bold" size="32.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="BASELINE_RIGHT" spacing="5.0" style="-fx-padding: 0 20 0 0;">
+                                    <children>
+                                        <Label text="Welcome," textFill="#4A5568">
+                                            <font>
+                                                <Font name="System" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="welcomeUserLabel" text="User" textFill="#003087">
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Button onAction="#logOutUser" styleClass="logout-button" text="Logout" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Content: Card Grid -->
+                    <center>
+                        <GridPane alignment="CENTER" hgap="30" style="-fx-padding: 60;" vgap="30">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.33" />
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.33" />
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.33" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="SOMETIMES" />
+                                <RowConstraints vgrow="SOMETIMES" />
+                            </rowConstraints>
+
+                            <children>
+                                <!-- LINAC QA -->
+                                <VBox alignment="CENTER" onMouseClicked="#addLinac" styleClass="dashboard-card">
+                                    <children>
+                                        <Label text="LINAC&#10;Quality Assurance" textAlignment="CENTER" textFill="#2D3748" wrapText="true">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="Daily output, symmetry, flatness checks" textAlignment="CENTER" textFill="#718096" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <GridPane.rowIndex>0</GridPane.rowIndex>
+                                    <GridPane.columnIndex>0</GridPane.columnIndex>
+                                </VBox>
+
+                                <!-- SAD Open Field -->
+                                <VBox alignment="CENTER" onMouseClicked="#addSADNB" styleClass="dashboard-card">
+                                    <children>
+                                        <Label text="SAD&#10;Open Field" textAlignment="CENTER" textFill="#2D3748" wrapText="true">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="Source-Axis Distance, no block/wedge" textAlignment="CENTER" textFill="#718096" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <GridPane.rowIndex>0</GridPane.rowIndex>
+                                    <GridPane.columnIndex>1</GridPane.columnIndex>
+                                </VBox>
+
+                                <!-- SAD Blocked -->
+                                <VBox alignment="CENTER" onMouseClicked="#addSADB" styleClass="dashboard-card">
+                                    <children>
+                                        <Label text="SAD&#10;Blocked Field" textAlignment="CENTER" textFill="#2D3748" wrapText="true">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="With tray factor or custom block" textAlignment="CENTER" textFill="#718096" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <GridPane.rowIndex>0</GridPane.rowIndex>
+                                    <GridPane.columnIndex>2</GridPane.columnIndex>
+                                </VBox>
+
+                                <!-- SSD Open Field -->
+                                <VBox alignment="CENTER" onMouseClicked="#addSSDNB" styleClass="dashboard-card">
+                                    <children>
+                                        <Label text="SSD&#10;Open Field" textAlignment="CENTER" textFill="#2D3748" wrapText="true">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="Source-Surface Distance calculation" textAlignment="CENTER" textFill="#718096" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <GridPane.rowIndex>1</GridPane.rowIndex>
+                                    <GridPane.columnIndex>0</GridPane.columnIndex>
+                                </VBox>
+
+                                <!-- SSD Blocked -->
+                                <VBox alignment="CENTER" onMouseClicked="#addSSDB" styleClass="dashboard-card">
+                                    <children>
+                                        <Label text="SSD&#10;Blocked Field" textAlignment="CENTER" textFill="#2D3748" wrapText="true">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="SSD with blocking tray or custom" textAlignment="CENTER" textFill="#718096" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <GridPane.rowIndex>1</GridPane.rowIndex>
+                                    <GridPane.columnIndex>1</GridPane.columnIndex>
+                                </VBox>
+
+                                <!-- SAD Wedge -->
+                                <VBox alignment="CENTER" onMouseClicked="#addSADNBW" styleClass="dashboard-card">
+                                    <children>
+                                        <Label text="SAD&#10;Wedged Field" textAlignment="CENTER" textFill="#2D3748" wrapText="true">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="Open field with physical wedge" textAlignment="CENTER" textFill="#718096" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <GridPane.rowIndex>1</GridPane.rowIndex>
+                                    <GridPane.columnIndex>2</GridPane.columnIndex>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </center>
+                </BorderPane>
+            </content>
+         <graphic>
+            <VBox alignment="CENTER" spacing="8">
+               <children>
+                  <Label text="HOME" textFill="#003087">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </graphic>
+        </Tab>
+        <Tab fx:id="qaTab" closable="true">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+                    
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                                      -fx-spacing: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                        <children>
+                            <Label text="LINAC Daily Quality Assurance" textFill="#003087">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font>
+                            </Label>
+                            <Label text="Output Constancy • Symmetry • Flatness • Temperature / Pressure Correction" textFill="#00A1A7">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Form -->
+                    <center>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                        <VBox spacing="30.0" style="-fx-padding: 40 60 60 60;">
+                            <children>
+                                
+                                <!-- QA Date -->
+                                <VBox spacing="10.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Measurement Date" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="qaDateField" prefHeight="48.0" promptText="YYYY-MM-DD (e.g. 2026-01-04)" styleClass="input-field" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Environmental Conditions -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Environmental Conditions" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Temperature 1 (°C)" textFill="#4A5568" />
+                                                <TextField fx:id="T1" promptText="e.g. 22.5" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Temperature 2 (°C)" textFill="#4A5568" />
+                                                <TextField fx:id="T2" promptText="e.g. 22.6" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Pressure 1 (mmHg)" textFill="#4A5568" />
+                                                <TextField fx:id="P1" promptText="e.g. 760" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Pressure 2 (mmHg)" textFill="#4A5568" />
+                                                <TextField fx:id="P2" promptText="e.g. 761" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Output Measurements -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Output Measurements (100 MU, 10x10 cm, SSD 100 cm)" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="33.33" />
+                                            <ColumnConstraints percentWidth="33.33" />
+                                            <ColumnConstraints percentWidth="33.33" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="-3 cm (Gantry 180°)" textFill="#4A5568" />
+                                                <TextField fx:id="neg31" promptText="Reading 1" styleClass="input-field" />
+                                                <TextField fx:id="neg32" promptText="Reading 2" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="0 cm (Central)" textFill="#4A5568" />
+                                                <TextField fx:id="zero1" promptText="Reading 1" styleClass="input-field" />
+                                                <TextField fx:id="zero2" promptText="Reading 2" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="2">
+                                                <children>
+                                                <Label text="+3 cm (Gantry 0°)" textFill="#4A5568" />
+                                                <TextField fx:id="pos31" promptText="Reading 1" styleClass="input-field" />
+                                                <TextField fx:id="pos32" promptText="Reading 2" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Symmetry/Flatness Crossplane -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Crossplane Symmetry Checks" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="33.33" />
+                                            <ColumnConstraints percentWidth="33.33" />
+                                            <ColumnConstraints percentWidth="33.33" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Negative Crossplane" textFill="#4A5568" />
+                                                <TextField fx:id="negC" promptText="e.g. 1.02" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Central Axis" textFill="#4A5568" />
+                                                <TextField fx:id="c0" promptText="e.g. 1.00" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="2">
+                                                <children>
+                                                <Label text="Positive Crossplane" textFill="#4A5568" />
+                                                <TextField fx:id="c3" promptText="e.g. 1.01" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Final Result -->
+                                <VBox alignment="CENTER" spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="QA Result" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="24.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="ERROR" alignment="CENTER" editable="false" prefHeight="80.0" styleClass="qa-result-field">
+                                        <font><Font name="System Bold" size="36.0" /></font>
+                                    </TextField>
+                                    <Label text="Tolerance: ±3%" textFill="#718096">
+                                        <font><Font name="System" size="16.0" /></font>
+                                    </Label>
+                                    </children>
+                                </VBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER" spacing="30.0">
+                                    <children>
+                                    <Button onAction="#performQACalculation" prefHeight="56.0" prefWidth="240.0" styleClass="primary-button" text="Calculate / Log">
+                                        <font><Font name="System Bold" size="18.0" /></font>
+                                    </Button>
+                                    <Button onAction="#clearQATab" prefHeight="56.0" prefWidth="180.0" styleClass="secondary-button" text="Clear All" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                        </ScrollPane>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="LINAC QA" textFill="#003087">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+
+        <Tab fx:id="SADNB" closable="true">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7AA;">
+                    
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                                      -fx-spacing: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                        <children>
+                            <Label text="SAD Open Field Calculation" textFill="#003087">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font>
+                            </Label>
+                            <Label text="Source-to-Axis Distance • No Block • No Wedge" textFill="#00A1A7">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Form -->
+                    <center>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                        <VBox spacing="30.0" style="-fx-padding: 40 60 60 60;">
+                            <children>
+                                
+                                <!-- Patient ID -->
+                                <VBox spacing="10.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Patient Identification" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="sadnb_patientId" prefHeight="48.0" promptText="Enter Patient ID (optional for logging)" styleClass="text-field" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Input Parameters -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Input Parameters" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Field Size X (cm at isocenter)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_x" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Field Size Y (cm at isocenter)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_y" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Depth (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_depth" promptText="e.g. 5.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Prescribed Dose (cGy)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_dose" promptText="e.g. 200" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Calculated Results -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Calculated Values" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Equivalent Square Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_eqfs" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Scatter Correction Factor (Sc,p)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_scp" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Tissue Maximum Ratio (TMR)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_tmr" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Dose at dmax (cGy/MU)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnb_dmax" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox alignment="CENTER" spacing="6" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Treatment Time (Monitor Units)" textFill="#003087">
+                                                    <font><Font name="System Bold" size="22.0" /></font>
+                                                </Label>
+                                                <TextField fx:id="sadnb_time" editable="false" prefHeight="60.0" styleClass="highlight-result" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER" spacing="30.0">
+                                    <children>
+                                    <Button onAction="#sadOpenFieldCalculation" prefHeight="56.0" prefWidth="220.0" styleClass="primary-button" text="Calculate">
+                                        <font><Font name="System Bold" size="18.0" /></font>
+                                    </Button>
+                                    <Button onAction="#clearSADNB" prefHeight="56.0" prefWidth="180.0" styleClass="secondary-button" text="Clear All" />
+                                    <Button onAction="#printSADOpenField" prefHeight="56.0" prefWidth="180.0" styleClass="print-button" text="Print Result">
+                                        <font><Font name="System Bold" size="16.0" /></font>
+                                    </Button>
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                        </ScrollPane>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="SAD Open Field" textFill="#003087">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+        <Tab fx:id="SADB" closable="true">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+                    
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                                      -fx-spacing: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                        <children>
+                            <Label text="SAD Blocked Field Calculation" textFill="#003087">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font>
+                            </Label>
+                            <Label text="Source-to-Axis Distance • With Blocking Tray or Custom Block" textFill="#00A1A7">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Form -->
+                    <center>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                        <VBox spacing="30.0" style="-fx-padding: 40 60 60 60;">
+                            <children>
+                                
+                                <!-- Patient ID -->
+                                <VBox spacing="10.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Patient Identification" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="sadb_patientId" prefHeight="48.0" promptText="Enter Patient ID (optional for logging)" styleClass="text-field" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Input Parameters -->
+                                <VBox minHeight="340.0" spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Input Parameters" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Field Size X (cm at isocenter)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_x" promptText="e.g. 15.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Field Size Y (cm at isocenter)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_y" promptText="e.g. 12.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Depth (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_depth" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Prescribed Dose (cGy)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_dose" promptText="e.g. 180" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                       <VBox layoutX="325.0" layoutY="102.0" prefHeight="99.0" prefWidth="426.0" spacing="6" GridPane.rowIndex="2">
+                                          <children>
+                                             <Label alignment="BOTTOM_LEFT" prefHeight="17.0" prefWidth="508.0" text="Area (cm^2)" textFill="#4A5568" VBox.vgrow="NEVER">
+                                                <VBox.margin>
+                                                   <Insets />
+                                                </VBox.margin>
+                                                <padding>
+                                                   <Insets top="5.0" />
+                                                </padding>
+                                             </Label>
+                                             <TextField fx:id="sadb_area" promptText="e.g. 10" styleClass="input-field" />
+                                          </children>
+                                          <GridPane.margin>
+                                             <Insets top="20.0" />
+                                          </GridPane.margin>
+                                       </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Tray Factor Selection -->
+                                <VBox spacing="15.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Tray Factor Selection" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <VBox spacing="12.0" style="-fx-padding: 20 30 20 30; -fx-background-color: #F0F7FF; -fx-background-radius: 12;">
+                                        <children>
+                                            <RadioButton fx:id="sadb_trayfac" selected="true" styleClass="modern-radio" text="Standard Tray Factor (applied automatically)">
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="sadbFactors" />
+                                          </toggleGroup></RadioButton>
+                                            <RadioButton fx:id="sadb_belly" styleClass="modern-radio" text="Belly Board or Custom Factor" toggleGroup="$sadbFactors" />
+                                            <RadioButton fx:id="sadb_nofac" styleClass="modern-radio" text="No Tray Factor (open field equivalent)" toggleGroup="$sadbFactors" />
+                                        </children>
+                                    </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Calculated Results -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Calculated Values" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Equivalent Square Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_eqfs" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Scatter Correction Factor (Sc,p)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_scp" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Reduced Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_reduced" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Tissue Maximum Ratio (TMR)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_tmr" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Dose at dmax (cGy/MU)" textFill="#4A5568" />
+                                                <TextField fx:id="sadb_dmax" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox alignment="CENTER" spacing="6" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                                <children>
+                                                <Label text="Treatment Time (Monitor Units)" textFill="#003087">
+                                                    <font><Font name="System Bold" size="22.0" /></font>
+                                                </Label>
+                                                <TextField fx:id="sadb_time" editable="false" prefHeight="60.0" styleClass="highlight-result" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER" spacing="30.0">
+                                    <children>
+                                    <Button onAction="#sadBlockedFieldCalculation" prefHeight="56.0" prefWidth="220.0" styleClass="primary-button" text="Calculate">
+                                        <font><Font name="System Bold" size="18.0" /></font>
+                                    </Button>
+                                    <Button onAction="#clearSADBlock" prefHeight="56.0" prefWidth="180.0" styleClass="secondary-button" text="Clear All" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                        </ScrollPane>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="SAD Blocked" textFill="#003087">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+        <Tab fx:id="SSDNB" closable="true">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+                    
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                                      -fx-spacing: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                        <children>
+                            <Label text="SSD Open Field Calculation" textFill="#003087">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font>
+                            </Label>
+                            <Label text="Source-to-Surface Distance • No Block • No Wedge" textFill="#00A1A7">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Form -->
+                    <center>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                        <VBox spacing="30.0" style="-fx-padding: 40 60 60 60;">
+                            <children>
+                                
+                                <!-- Patient ID -->
+                                <VBox spacing="10.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Patient Identification" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="ssdnb_patientId" prefHeight="48.0" promptText="Enter Patient ID (optional for logging)" styleClass="text-field" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Input Parameters -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Input Parameters" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Field Size X (cm at surface)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_x" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Field Size Y (cm at surface)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_y" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Depth (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_depth" promptText="e.g. 5.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Prescribed Dose (cGy)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_dose" promptText="e.g. 200" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Calculated Results -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Calculated Values" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Equivalent Square Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_eqfs" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Scatter Correction Factor (Sc,p)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_scp" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Percentage Depth Dose (PDD)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_pdd" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Dose at dmax (cGy/MU)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdnb_dmax" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox alignment="CENTER" spacing="6" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Treatment Time (Monitor Units)" textFill="#003087">
+                                                    <font><Font name="System Bold" size="22.0" /></font>
+                                                </Label>
+                                                <TextField fx:id="ssdnb_time" editable="false" prefHeight="60.0" styleClass="highlight-result" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER" spacing="30.0">
+                                    <children>
+                                    <Button onAction="#ssdOpenFieldCalculation" prefHeight="56.0" prefWidth="220.0" styleClass="primary-button" text="Calculate">
+                                        <font><Font name="System Bold" size="18.0" /></font>
+                                    </Button>
+                                    <Button onAction="#clearSSDNB" prefHeight="56.0" prefWidth="180.0" styleClass="secondary-button" text="Clear All" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                        </ScrollPane>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="SSD Open Field" textFill="#003087">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+
+        <Tab fx:id="SSDB" closable="true">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+                    
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                                      -fx-spacing: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                        <children>
+                            <Label text="SSD Blocked Field Calculation" textFill="#003087">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font>
+                            </Label>
+                            <Label text="Source-to-Surface Distance • With Blocking Tray or Custom Block" textFill="#00A1A7">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Form -->
+                    <center>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                        <VBox spacing="30.0" style="-fx-padding: 40 60 60 60;">
+                            <children>
+                                
+                                <!-- Patient ID -->
+                                <VBox spacing="10.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Patient Identification" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="ssdb_patientId" prefHeight="48.0" promptText="Enter Patient ID (optional for logging)" styleClass="text-field" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Input Parameters -->
+                                <VBox minHeight="340.0" spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Input Parameters" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Field Size X (cm at surface)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_x" promptText="e.g. 15.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Field Size Y (cm at surface)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_y" promptText="e.g. 12.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Depth (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_depth" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Prescribed Dose (cGy)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_dose" promptText="e.g. 180" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                       <VBox layoutX="325.0" layoutY="102.0" spacing="6" GridPane.rowIndex="2">
+                                          <children>
+                                             <Label text="Area (cm^2)" textFill="#4A5568" />
+                                             <TextField fx:id="ssdb_area" promptText="e.g. 10" styleClass="input-field" />
+                                          </children>
+                                          <GridPane.margin>
+                                             <Insets top="20.0" />
+                                          </GridPane.margin>
+                                       </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Tray Factor Selection -->
+                                <VBox spacing="15.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Tray Factor Selection" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <VBox spacing="12.0" style="-fx-padding: 20 30 20 30; -fx-background-color: #F0F7FF; -fx-background-radius: 12;">
+                                        <children>
+                                            <RadioButton fx:id="ssdb_trayfac" selected="true" styleClass="modern-radio" text="Standard Tray Factor (applied automatically)">
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="ssdbFactors" />
+                                          </toggleGroup></RadioButton>
+                                            <RadioButton fx:id="ssdb_belly" styleClass="modern-radio" text="Belly Board or Custom Factor" toggleGroup="$ssdbFactors" />
+                                            <RadioButton fx:id="ssdb_nofac" styleClass="modern-radio" text="No Tray Factor (open field equivalent)" toggleGroup="$ssdbFactors" />
+                                        </children>
+                                    </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Calculated Results -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Calculated Values" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Equivalent Square Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_eqfs" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Scatter Correction Factor (Sc,p)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_scp" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Reduced Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_reduced" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Percentage Depth Dose (PDD)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_pdd" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Dose at dmax (cGy/MU)" textFill="#4A5568" />
+                                                <TextField fx:id="ssdb_dmax" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox alignment="CENTER" spacing="6" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                                <children>
+                                                <Label text="Treatment Time (Monitor Units)" textFill="#003087">
+                                                    <font><Font name="System Bold" size="22.0" /></font>
+                                                </Label>
+                                                <TextField fx:id="ssdb_time" editable="false" prefHeight="60.0" styleClass="highlight-result" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER" spacing="30.0">
+                                    <children>
+                                    <Button onAction="#ssdBlockedFieldCalculation" prefHeight="56.0" prefWidth="220.0" styleClass="primary-button" text="Calculate">
+                                        <font><Font name="System Bold" size="18.0" /></font>
+                                    </Button>
+                                    <Button onAction="#clearSSDB" prefHeight="56.0" prefWidth="180.0" styleClass="secondary-button" text="Clear All" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                        </ScrollPane>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="SSD Blocked" textFill="#003087">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+
+        <Tab fx:id="SADNBW" closable="true">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+                    
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                                      -fx-spacing: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                        <children>
+                            <Label text="SAD Wedged Field Calculation" textFill="#003087">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font>
+                            </Label>
+                            <Label text="Source-to-Axis Distance • Open Field • Physical Wedge" textFill="#00A1A7">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Form -->
+                    <center>
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                        <VBox spacing="30.0" style="-fx-padding: 40 60 60 60;">
+                            <children>
+                                
+                                <!-- Patient ID -->
+                                <VBox spacing="10.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Patient Identification" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="sadnbw_patientId" prefHeight="48.0" promptText="Enter Patient ID (optional for logging)" styleClass="text-field" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Input Parameters -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Input Parameters" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Field Size X (cm at isocenter)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_x" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Field Size Y (cm at isocenter)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_y" promptText="e.g. 10.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Depth (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_depth" promptText="e.g. 5.0" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Prescribed Dose (cGy)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_dose" promptText="e.g. 200" styleClass="input-field" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Wedge Selection -->
+                                <VBox spacing="15.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Wedge Angle Selection" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    <VBox spacing="18.0" style="-fx-padding: 25 30 25 30; -fx-background-color: #F0F7FF; -fx-background-radius: 12;">
+                                        <children>
+                                            <RadioButton fx:id="sadnb_w151" styleClass="modern-radio" text="15° Wedge">
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="wedgeFactors" />
+                                          </toggleGroup></RadioButton>
+                                            <RadioButton fx:id="sadnb_w301" styleClass="modern-radio" text="30° Wedge" toggleGroup="$wedgeFactors" />
+                                            <RadioButton fx:id="sadnb_w451" selected="true" styleClass="modern-radio" text="45° Wedge" toggleGroup="$wedgeFactors" />
+                                            <RadioButton fx:id="sadnb_w601" styleClass="modern-radio" text="60° Wedge" toggleGroup="$wedgeFactors" />
+                                        </children>
+                                    </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Calculated Results -->
+                                <VBox spacing="20.0" styleClass="form-section">
+                                    <children>
+                                    <Label text="Calculated Values" textFill="#2D3748">
+                                        <font><Font name="System Bold" size="20.0" /></font>
+                                    </Label>
+                                    
+                                    <GridPane hgap="25" vgap="18">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50.0" />
+                                            <ColumnConstraints percentWidth="50.0" />
+                                        </columnConstraints>
+                                        <children>
+                                            <VBox spacing="6">
+                                                <children>
+                                                <Label text="Equivalent Square Field Size (cm)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_eqfs" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1">
+                                                <children>
+                                                <Label text="Scatter Correction Factor (Sc,p)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_scp" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Tissue Maximum Ratio (TMR)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_tmr" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                <Label text="Dose at dmax (cGy/MU)" textFill="#4A5568" />
+                                                <TextField fx:id="sadnbw_dmax" editable="false" styleClass="result-field" />
+                                                </children>
+                                            </VBox>
+                                            
+                                            <VBox alignment="CENTER" spacing="6" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                                <children>
+                                                <Label text="Treatment Time (Monitor Units)" textFill="#003087">
+                                                    <font><Font name="System Bold" size="22.0" /></font>
+                                                </Label>
+                                                <TextField fx:id="sadnbw_time" editable="false" prefHeight="60.0" styleClass="highlight-result" />
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    <rowConstraints>
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                       <RowConstraints />
+                                    </rowConstraints>
+                                    </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- Action Buttons -->
+                                <HBox alignment="CENTER" spacing="30.0">
+                                    <children>
+                                    <Button onAction="#sadOpenWedgeFieldCalculation" prefHeight="56.0" prefWidth="220.0" styleClass="primary-button" text="Calculate">
+                                        <font><Font name="System Bold" size="18.0" /></font>
+                                    </Button>
+                                    <Button onAction="#clearSADNNBW" prefHeight="56.0" prefWidth="180.0" styleClass="secondary-button" text="Clear All" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                        </ScrollPane>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="SAD Wedged" textFill="#003087">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+        <Tab fx:id="myClacsTab" closable="false">
+            <content>
+                <BorderPane style="-fx-background-color: #F5F7FA;">
+         
+                    <!-- Top Header -->
+                    <top>
+                        <VBox style="-fx-background-color: white; -fx-padding: 30 40 20 40;                           -fx-spacing: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 2);">
+                            <children>
+                                <Label text="My Calculations / QA History" textFill="#003087">
+                                    <font>
+                                        <Font name="System Bold" size="28.0" />
+                                    </font>
+                                </Label>
+                                <Label text="All your treatment time calculations and LINAC QA records" textFill="#718096">
+                                    <font>
+                                        <Font name="System" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </top>
+
+                    <!-- Main Content -->
+                    <center>
+                        <VBox spacing="30.0" style="-fx-padding: 40;">
+                            <children>
+                  
+                                <!-- Filter Bar -->
+                                <VBox spacing="20.0" style="-fx-background-color: white; -fx-padding: 25;                                 -fx-background-radius: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 6);">
+                                    <children>
+                                        <Label text="Filter Records" textFill="#2D3748">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                        
+                                        <GridPane hgap="20" prefWidth="Infinity" vgap="15">
+                                            <columnConstraints>
+                                                <ColumnConstraints percentWidth="25.0" />
+                                                <ColumnConstraints percentWidth="25.0" />
+                                                <ColumnConstraints percentWidth="25.0" />
+                                                <ColumnConstraints percentWidth="25.0" />
+                                            </columnConstraints>
+                                            <children>
+                                                <VBox spacing="6">
+                                                    <children>
+                                                        <Label text="Username" textFill="#4A5568">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="historySearchField" prefHeight="44.0" promptText="Search by username" styleClass="filter-field" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="6" GridPane.columnIndex="1">
+                                                    <children>
+                                                        <Label text="Date (YYYY-MM-DD)" textFill="#4A5568">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="historyDateField" prefHeight="44.0" promptText="e.g. 2026-01-04" styleClass="filter-field" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="6" GridPane.columnIndex="2">
+                                                    <children>
+                                                        <Label text="Patient ID" textFill="#4A5568">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="historyPatientSearchField" prefHeight="44.0" promptText="Search patient" styleClass="filter-field" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="6" GridPane.columnIndex="3">
+                                                    <children>
+                                                        <Label text="Calculation Type" textFill="#4A5568">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="historyCalcTypeField" prefHeight="44.0" promptText="e.g. SAD Open Field" styleClass="filter-field" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                 <rowConstraints>
+                                    <RowConstraints />
+                                 </rowConstraints>
+                                        </GridPane>
+                                    </children>
+                                </VBox>
+
+                                <!-- History Table -->
+                                <VBox spacing="15.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <TableView fx:id="CalculationHistoryTable" prefHeight="500.0" styleClass="modern-table" tableMenuButtonVisible="true">
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>
+
+                                        <!-- Action Buttons -->
+                                        <HBox alignment="CENTER" spacing="30.0">
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#reloadCalculations" prefHeight="50.0" prefWidth="200.0" styleClass="primary-button" text="Refresh History">
+                                                    <font>
+                                                        <Font name="System Bold" size="16.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#logOutUser" prefHeight="50.0" prefWidth="160.0" styleClass="danger-button" text="Logout">
+                                                    <font>
+                                                        <Font name="System Bold" size="16.0" />
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                            </children>
+                        </VBox>
+                    </center>
+                </BorderPane>
+            </content>
+
+            <graphic>
+                <VBox alignment="CENTER" spacing="8">
+                    <children>
+                        <Label text="My Calculations" textFill="#003087">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </graphic>
+        </Tab>
+    </tabs>
+</TabPane>
