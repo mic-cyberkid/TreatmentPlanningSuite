@@ -434,22 +434,7 @@ public class AdminDashboardController implements Initializable {
         backToHome(event);
     }
     private void backToHome(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-            Parent root;
-            root = loader.load();
-            // Load the new scene
-
-            // Get the current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setFullScreen(true);
-            stage.setScene(new Scene(root)); // Set the new scene
-            stage.show();
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+         SceneManager.getInstance().showHome();
     }
 
     
@@ -644,3 +629,4 @@ public class AdminDashboardController implements Initializable {
 
     
 }
+
