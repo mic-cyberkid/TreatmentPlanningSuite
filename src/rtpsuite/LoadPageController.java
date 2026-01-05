@@ -124,6 +124,7 @@ public class LoadPageController implements Initializable {
         // ...
         // TODO : Print user selected data/calculations
         // Initialize stuff
+        DataSheet data_sheet = new DataSheet();
         TMR_SHEET = DataSheet.TMR_SHEET;
         SCP_SHEET = DataSheet.SCP_SHEET;
         PDD_SHEET = DataSheet.PDD_SHEET;
@@ -1293,3 +1294,4 @@ public class LoadPageController implements Initializable {
     private RadioButton sadnb_w601;
 
 }
+
