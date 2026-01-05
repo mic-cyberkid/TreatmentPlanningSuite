@@ -143,5 +143,5 @@ Michael Okyere (original developer)
 
 ---
 
-**RTP Suite** – Streamlining daily physics tasks in radiotherapy.
+**TP Suite** – Streamlining daily physics tasks in radiotherapy.
 ```
