@@ -1,5 +1,5 @@
 # Treatment Planning Suite - Treatment Time Calculator and Quality Assurance App for Oncology Physics Department
-
+![Landing Page](./src/images/home.png)
 ## Overview
 
 **TP Suite** is a desktop application designed specifically for medical physicists in radiation oncology departments. It provides tools for:
@@ -40,11 +40,18 @@ The application is built using **JavaFX** for the GUI and **SQLite** (via JDBC) 
 
 ## Screenshots
 
-*(To be added after running the app)*  
-- Home screen with User/Admin selection  
-- User calculation interface (SAD/SSD tabs)  
-- LINAC QA entry form  
-- Calculation history table  
+![Landing Page](./src/images/home.png)  
+- Home screen with User/Admin selection
+  ![Landing Page](./src/images/admin_login.png) 
+- Login screen
+  ![Landing Page](./src/images/sadnb.png)
+  ![Landing Page](./src/images/ssdb.png) 
+- User calculation interface (SAD/SSD tabs)
+  ![Landing Page](./src/images/qa.png) 
+- LINAC QA entry form
+   ![Landing Page](./src/images/tmtlogs.png)
+- Calculation history table
+   ![Landing Page](./src/images/admin.png) 
 - Admin dashboard  
 
 ## Technologies Used
